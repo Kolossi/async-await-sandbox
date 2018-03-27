@@ -59,5 +59,5 @@ It does mean you won't get the context data like the HTTP context, but that's li
 Trouble is we haven't got rid of ASP.Net butler, he's still there and will be the one called back after  any await that doesn't have .ConfigureAwait(false).  So if any blocking is introduced and .ConfigureAwait(false) isn't used on any single call, even deep in a third party library in the call stack, then we get a deadlock.
 
 Here's two ways to deal with that.
-•	New thread
-•	Replace current thread sync context
+*	New thread
+*	Replace current thread sync context
