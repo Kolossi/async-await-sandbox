@@ -162,6 +162,10 @@ namespace AsyncWebApplication.Controllers
         }
 
 
+        /// <summary>
+        /// We'll block, but first set the thread's SynchronizationContext to
+        /// a Threading version rather than the blocky ASP.Net version
+        /// </summary>
         [HttpGet]
         [Route("api/values/blocking_oops_clear_context")]
         public IEnumerable<string> BlockingOopsFixedClearContext()
@@ -177,6 +181,11 @@ namespace AsyncWebApplication.Controllers
             return new string[] { result1, result2, before, after };
         }
 
+        /// <summary>
+        /// We'll block, but first set the thread's SynchronizationContext to
+        /// a copy of the ASP.Net version to see if that beats the deadlock...
+        /// But it doesn't, it must hold some static state.
+        /// </summary>
         [HttpGet]
         [Route("api/values/blocking_oops_copy_context_DEADLOCK")]
         public IEnumerable<string> BlockingOopsCopyContextDEADLOCK()
@@ -192,6 +201,11 @@ namespace AsyncWebApplication.Controllers
 
             return new string[] { result1, result2, before, after };
         }
+
+
+
+
+        // async helpers - do an http get
 
 
         public static async Task<string> GetStringAsyncOopsForgetConfigureAwaitFalse()
@@ -213,7 +227,10 @@ namespace AsyncWebApplication.Controllers
         }
 
 
-        //%%%  use GetStringWithContext and check results
+
+
+        //TODO:  add more endpoints which use the following GetStringWithContext
+        //       and check results to see if httpcontext preserved
 
 
         //public static async Task<string> GetStringAsyncWithContextOopsForgetConfigureAwaitFalse()
