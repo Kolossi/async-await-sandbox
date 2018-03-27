@@ -1,5 +1,9 @@
 # async-await-sandbox
 
+Some very basic notes about async/await.
+
+For example code, see https://github.com/Kolossi/async-await-sandbox/blob/master/Async%20Sandbox%20Solution/AsyncWebApplication/Controllers/ValuesController.cs
+
 Async await - .Net helpers for easy async methods
 
 Before async await – each web/api request took a thread from the threadpool, suspending it when not needed
